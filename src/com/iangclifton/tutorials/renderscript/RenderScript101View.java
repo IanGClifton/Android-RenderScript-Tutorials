@@ -12,10 +12,10 @@ public class RenderScript101View extends RSSurfaceView {
 	private RenderScriptGL mRS;
 
 	public RenderScript101View(Context context) {
-	    super(context);
-	    mContext = context;
-	    ensureRenderScript();
-    }
+		super(context);
+		mContext = context;
+		ensureRenderScript();
+	}
 
 	private void ensureRenderScript() {
 		if (mRS == null) {
@@ -26,19 +26,19 @@ public class RenderScript101View extends RSSurfaceView {
 			mRenderScript = new RenderScript101RS(mRS, mContext.getResources(), R.raw.renderscript101);
 		}
 	}
-	
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        super.onTouchEvent(event);
-        
-        if (mRenderScript == null) {
-        	return true;
-        }
-        
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-        	mRenderScript.setBackgroundBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon));
-        }
-        
-        return true;
-    }
+
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		super.onTouchEvent(event);
+
+		if (mRenderScript == null) {
+			return true;
+		}
+
+		if (event.getAction() == MotionEvent.ACTION_DOWN) {
+			mRenderScript.setBackgroundBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.icon));
+		}
+
+		return true;
+	}
 }
