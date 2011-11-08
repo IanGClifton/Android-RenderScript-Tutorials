@@ -6,25 +6,23 @@ import android.renderscript.RSSurfaceView;
 import android.renderscript.RenderScriptGL;
 import android.view.MotionEvent;
 
+/**
+ * Custom RSSurfaceView that sets up the RenderScript and captures touch events.
+ * 
+ * @author Ian G. Clifton
+ */
 public class RenderScript101View extends RSSurfaceView {
 	private Context mContext;
 	private RenderScript101RS mRenderScript;
 	private RenderScriptGL mRS;
 
+	/**
+	 * {@inheritDoc}}
+	 */
 	public RenderScript101View(Context context) {
 		super(context);
 		mContext = context;
 		ensureRenderScript();
-	}
-
-	private void ensureRenderScript() {
-		if (mRS == null) {
-			final RenderScriptGL.SurfaceConfig sc = new RenderScriptGL.SurfaceConfig();
-			mRS = createRenderScriptGL(sc);
-		}
-		if (mRenderScript == null) {
-			mRenderScript = new RenderScript101RS(mRS, mContext.getResources(), R.raw.renderscript101);
-		}
 	}
 
 	@Override
@@ -40,5 +38,19 @@ public class RenderScript101View extends RSSurfaceView {
 		}
 
 		return true;
+	}
+
+	/**
+	 * Ensures the RenderScriptGL reference has been established and our custom
+	 * RS helper has been created.
+	 */
+	private void ensureRenderScript() {
+		if (mRS == null) {
+			final RenderScriptGL.SurfaceConfig sc = new RenderScriptGL.SurfaceConfig();
+			mRS = createRenderScriptGL(sc);
+		}
+		if (mRenderScript == null) {
+			mRenderScript = new RenderScript101RS(mRS, mContext.getResources(), R.raw.renderscript101);
+		}
 	}
 }
